@@ -1,0 +1,38 @@
+{% extends "index_base.html" %}
+{% load static %}
+{% block title %}
+Login
+{% endblock %}
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'login.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% if error %}
+    <div class="alert alert-danger">
+        {{error}}
+    </div>
+    {% endif %}
+    <form class="loginform" method="POST">
+        {% csrf_token %}
+        <div class="userlogo">
+            <i class="fa fa-user-circle" style="font-size: 60px;" aria-hidden="true"></i>
+        </div>
+        <h3 class="heading">Login</h3>
+        <div class="main">
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" class="form-control" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="password" class="form-control" required>
+            </div>
+            <br>
+            <div>
+                <a class="anchor" href="#">Forgot password</a>
+            </div>
+            <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
