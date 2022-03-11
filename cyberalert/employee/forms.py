@@ -1,5 +1,5 @@
 from django import forms
-from .models import Employee
+from .models import Employee, Todo
 from django.forms import TextInput, PasswordInput,NumberInput,EmailInput, FileInput, IntegerField, DateInput
 
 class EmployeeForm(forms.ModelForm):
@@ -13,3 +13,8 @@ class EmployeeForm(forms.ModelForm):
             'dob': DateInput(attrs={'class':'form-control','name':'category','type':'date'}),
             'password': PasswordInput(attrs={'type':'password','placeholder':'Password','class':'form-control','name':'password'})
         }
+
+class TodoForm(forms.ModelForm):
+    class Meta:
+        model = Todo
+        fields='__all__'

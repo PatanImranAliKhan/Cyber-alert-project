@@ -1,0 +1,57 @@
+{% extends 'emp_base.html' %}
+{% load static %}
+{% block title %}
+	Add Todo
+{% endblock %}
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'addTodo.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% if message %}
+    <div class="alert alert-success">
+        {{message}}
+    </div>
+    {% endif %}
+    {% if error %}
+    <div class="alert alert-danger">
+        {{error}}
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-white">
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="text" class="form-control add-task" placeholder="title" name="title">
+                        <br>
+                        <textarea type="text" class="form-control add-task" placeholder="description..." name="description"></textarea>
+                        <button name="add">add</button>
+                    </form>
+                    <hr>
+                    <div class="todo-list">
+                        <div class="todo-item">
+                            <div class="checker"><span class=""><input type="checkbox"></span></div>
+                            <span>Create theme</span>
+                        </div>
+                        <div class="todo-item">
+                            <div class="checker"><span class=""><input type="checkbox"></span></div>
+                            <span>Work on wordpress</span>
+                        </div>
+                        
+                        <div class="todo-item">
+                            <div class="checker"><span class=""><input type="checkbox"></span></div>
+                            <span>Organize office main department</span>
+                        </div>
+                        <div class="todo-item">
+                            <div class="checker"><span><input type="checkbox"></span></div>
+                            <span>Error solve in HTML template</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

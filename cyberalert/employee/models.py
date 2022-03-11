@@ -7,3 +7,9 @@ class Employee(models.Model):
     mobile=models.CharField(max_length=13)
     dob=models.DateField()
     password=models.CharField(max_length=255)
+
+class Todo(models.Model):
+    emp_email= models.CharField(max_length=100)
+    title: models.TextField()
+    description: models.TextField()
+    is_complete: models.BooleanField(default=False)
