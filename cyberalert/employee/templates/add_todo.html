@@ -31,27 +31,28 @@
                     </form>
                     <hr>
                     <div class="todo-list">
-                        <div class="todo-item">
-                            <div class="checker"><span class=""><input type="checkbox"></span></div>
-                            <span>Create theme</span>
-                        </div>
-                        <div class="todo-item">
-                            <div class="checker"><span class=""><input type="checkbox"></span></div>
-                            <span>Work on wordpress</span>
-                        </div>
-                        
-                        <div class="todo-item">
-                            <div class="checker"><span class=""><input type="checkbox"></span></div>
-                            <span>Organize office main department</span>
-                        </div>
-                        <div class="todo-item">
-                            <div class="checker"><span><input type="checkbox"></span></div>
-                            <span>Error solve in HTML template</span>
-                        </div>
+                        {% if todolist %}
+                            {% for todo in todolist %}
+                                <div class="todo-item">
+                                    <form id="todolistform" action="{% url 'changestatus' todo.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input name="id" value="{{todo.id}}" hidden>
+                                        <div class="checker"><span class=""><input type="checkbox" name="is_complete" {% if todo.is_complete %} checked{% endif %} onchange="isChecked()"></span></div>
+                                        <span>{{ todo.description}}</span>
+                                    </form>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    const isChecked= () =>{
+        document.getElementById("todolistform").submit();
+    }
+</script>
 {% endblock %}

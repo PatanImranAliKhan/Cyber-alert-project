@@ -21,22 +21,22 @@ def LoginPage(request):
             adm = Administrator.objects.get(email=email)
             adm_pasw = adm.password
             if check_password(password,adm_pasw):
-                session['email']=email
+                request.session['email']=email
                 return redirect('/administrator')
             else:
-                session['email']=None
+                request.session['email']=None
                 return render(request,'login.html',{'error':'invalid password'})
         except:
             try:
                 emp = Employee.objects.get(email=email)
                 emp_pasw = emp.password
                 if check_password(password,emp_pasw):
-                    session['email']=email
+                    request.session['email']=email
                     return redirect('/employee')
                 else:
-                    session['email']=None
+                    request.session['email']=None
                     return render(request,'login.html',{'error':'invalid password'})
             except:
-                session['email']=None
+                request.session['email']=None
                 return render(request,'login.html',{'error':'invalid email or password'})
     return render(request,'login.html')

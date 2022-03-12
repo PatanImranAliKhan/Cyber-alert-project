@@ -10,6 +10,6 @@ class Employee(models.Model):
 
 class Todo(models.Model):
     emp_email= models.CharField(max_length=100)
-    title: models.TextField()
-    description: models.TextField()
-    is_complete: models.BooleanField(default=False)
+    title = models.TextField()
+    description = models.TextField()
+    is_complete = models.BooleanField(default=False)
